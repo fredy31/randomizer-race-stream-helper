@@ -47,6 +47,7 @@ const ColorPickerStyles = styled(BlockPicker)`
     top:calc(100% + 20px);
     left:50%;
     transform:translateX(-50%);
+    z-index: 1;
 `;
 
 interface Props{
@@ -71,7 +72,6 @@ const Header:React.FC<Props> = ({bgKey,setBgKey}) => {
                     /> : <div></div> }
                 </KeyPickerContainer>
             </div>
-            <div>Update: 15s</div>
         </WebsiteStates>
     </HeaderStyles>
 }
