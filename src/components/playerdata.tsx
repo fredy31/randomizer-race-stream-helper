@@ -19,6 +19,10 @@ const ItemList = styled.div`
     align-items:center;
     justify-content:center;
 `;
+const ItemNewLine = styled.div`
+    width:100%;
+    height:1px;
+`;
 
 const getContrastYIQ = (hexcolor:string) => {
     hexcolor = hexcolor.replace("#", "");
@@ -31,20 +35,24 @@ const getContrastYIQ = (hexcolor:string) => {
 
 interface Props{
     fullList: string,
-    player: string,
+    playerName: string,
+    playerData: string,
     bgKey:string
 }
 
-const PlayerData:React.FC <Props> = ({fullList,player,bgKey}) => {
-    if(player != 'null'){
-        const playerData = JSON.parse(player);
+const PlayerData:React.FC <Props> = ({fullList,playerName,playerData,bgKey}) => {
+    if(playerData != 'null'){
         const itemList = fullList.split(',')
-        const itemGotList = playerData.has.split(',')
+        const itemGotList = playerData.split(',')
         return <Player borderColor={getContrastYIQ(bgKey)}>
-            <Name>{playerData.name}</Name>
+            <Name>{playerName}</Name>
             <ItemList>
                 {itemList.map((el)=>{
-                    return <ItemComp key={playerData.name + '-' + el} item={el} got={(itemGotList.indexOf(el) != -1)} />
+                    if(el == '|'){
+                        return <ItemNewLine></ItemNewLine>
+                    }else{
+                        return <ItemComp key={playerName + '-' + el} item={el} got={(itemGotList.indexOf(el) != -1 || playerData === 'Admin')} />
+                    }
                 })}
             </ItemList>
         </Player>;

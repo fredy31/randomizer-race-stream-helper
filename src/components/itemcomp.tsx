@@ -8,17 +8,24 @@ import bgKey from './../actionCreator/bgKey'
 
 const ItemStyle = styled.div<{gotStyle?: Boolean, color?:string}>`
     padding:36px;
-    font-size:80px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     max-width:80px;
+    width:80px;
+    height:80px;
     max-height:80px;
     overflow:hidden;
     color:currentColor;
     font-weight:900;
     text-transform:uppercase;
     color:${props=>props.color?getContrastYIQ(props.color):'#000'};
-    -webkit-text-stroke: ${props=>props.color?getContrastYIQInverse(props.color):'#fff'} 3px;
     opacity:${props=>props.gotStyle ? '1' : '0.5'};
     cursor:default;
+    span{
+        font-size:80px;
+        -webkit-text-stroke: ${props=>props.color?getContrastYIQInverse(props.color):'#fff'} 3px;
+    }
 `
 
 const getContrastYIQ = (hexcolor:string) => {
@@ -48,17 +55,15 @@ const ItemComp:React.FC<Props> = ({item,got,bgKey}) => {
     const itemsArray = JSON.parse(JSON.stringify(Config.items));
     if(item){
         //console.log(Config.items[item]);
-        if(itemsArray[item]["type"] === 'svg'){
+        const alt = (itemsArray[item]["nicename"]) ? itemsArray[item]["nicename"] : itemsArray[item]["content"];
+        if(itemsArray[item]["type"] === 'svg' || itemsArray[item]["type"] === 'png'){
+            //import {ReactComponent as SVGImage} from '../images/'+itemsArray[item]['content']+'.svg';
             return <ItemStyle color={bgKey} gotStyle={got}>
-                svg
-            </ItemStyle>
-        }else if(itemsArray[item]["type"] === 'png'){
-            return <ItemStyle color={bgKey} gotStyle={got}>
-                img
+                <img src={'/images/'+itemsArray[item]['content']+'.'+itemsArray[item]["type"]} alt={alt} />
             </ItemStyle>
         }else{
             return <ItemStyle color={bgKey} gotStyle={got}>
-                {itemsArray[item]['content']}
+                <span>{itemsArray[item]['content']}</span>
             </ItemStyle>
         }
     }else{

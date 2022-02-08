@@ -149,7 +149,8 @@ const Config = {
         },
         "triforce":{
             "type":"svg",
-            "content":"triforce"
+            "content":"triforce",
+            "nicename": "Triforce"
         },
         "pokemon-pokeball":{
             "type":"svg",

@@ -69,7 +69,7 @@ const Header:React.FC<Props> = ({bgKey,setBgKey}) => {
                         color={bgKey} 
                         onChangeComplete={(e)=>setBgKey(e.hex)} 
                         colors={['#111','#eee','#e00','#0e0','#00e']}
-                    /> : <div></div> }
+                    /> : <React.Fragment /> }
                 </KeyPickerContainer>
             </div>
         </WebsiteStates>

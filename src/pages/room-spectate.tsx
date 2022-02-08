@@ -3,12 +3,22 @@ import Body from '../layouts/body'
 import Header from '../components/header';
 import Loader from '../pages/loader';
 
+import styled from 'styled-components';
 import PlayerData from '../components/playerdata';
 
 import { initializeApp, setLogLevel } from '@firebase/app';
 import {getDatabase, ref, onValue} from '@firebase/database';
 import Config from './../config';
 
+const PlayerDataGrid = styled.div`
+    padding:16px;
+    box-sizing:border-box;
+    width:100%;
+    overflow:hidden;
+    display:grid;
+    grid-gap: 32px;
+    grid-template-columns:calc(50% - 16px) calc(50% - 16px);
+`;
 
 interface Props{
     roomcode?:string
@@ -34,13 +44,18 @@ const RoomSpectate:React.FC<Props> = ({roomcode}) => {
     
     if(spectateData.length!==0){
         const data = JSON.parse(spectateData);
-        var i = 0;
+        console.log(data.players);
+        Object.keys(data.players).map((k,i)=>{
+            console.log(k);
+            console.log(data.players[k]);
+        })
         return <Body>
             <Header></Header>
-            {data.players.map((e:Array<string>)=>{
-                {i++}
-                return <PlayerData key={'player'+i} fullList={data.items} player={JSON.stringify(e)} />
-            })}
+            <PlayerDataGrid>
+                {Object.keys(data.players).map((k,i)=>{
+                    return <PlayerData key={'player'+i} fullList={data.items} playerName={k} playerData={data.players[k]} />
+                })}
+            </PlayerDataGrid>
         </Body>
     }else{
         return <Body>
