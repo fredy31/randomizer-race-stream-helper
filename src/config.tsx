@@ -1,5 +1,7 @@
-{
+const Config = {
     "firebaseURL":"https://speedruntracker-default-rtdb.firebaseio.com",
+    "firebaseApiKey":"AIzaSyDRpi5OTU-hDSxlDYoW7bj1LRGRHbZGSXE",
+    "firebaseAuthDomain":"speedruntracker.firebaseapp.com",
     "items": {
         "1":{
             "type":"letter",
@@ -41,109 +43,109 @@
             "type":"letter",
             "content":"0"
         },
-        "A":{
+        "a":{
             "type":"letter",
             "content":"A"
         },
-        "B":{
+        "b":{
             "type":"letter",
             "content":"B"
         },
-        "C":{
+        "c":{
             "type":"letter",
             "content":"C"
         },
-        "D":{
+        "d":{
             "type":"letter",
             "content":"D"
         },
-        "E":{
+        "e":{
             "type":"letter",
             "content":"E"
         },
-        "F":{
+        "f":{
             "type":"letter",
             "content":"F"
         },
-        "G":{
+        "g":{
             "type":"letter",
             "content":"G"
         },
-        "H":{
+        "h":{
             "type":"letter",
             "content":"H"
         },
-        "I":{
+        "i":{
             "type":"letter",
             "content":"I"
         },
-        "J":{
+        "j":{
             "type":"letter",
             "content":"J"
         },
-        "K":{
+        "k":{
             "type":"letter",
             "content":"K"
         },
-        "L":{
+        "l":{
             "type":"letter",
             "content":"L"
         },
-        "M":{
+        "m":{
             "type":"letter",
             "content":"M"
         },
-        "N":{
+        "n":{
             "type":"letter",
             "content":"N"
         },
-        "O":{
+        "o":{
             "type":"letter",
             "content":"O"
         },
-        "P":{
+        "p":{
             "type":"letter",
             "content":"P"
         },
-        "Q":{
+        "q":{
             "type":"letter",
             "content":"Q"
         },
-        "R":{
+        "r":{
             "type":"letter",
             "content":"R"
         },
-        "S":{
+        "s":{
             "type":"letter",
             "content":"S"
         },
-        "T":{
+        "t":{
             "type":"letter",
             "content":"T"
         },
-        "U":{
+        "u":{
             "type":"letter",
             "content":"U"
         },
-        "V":{
+        "v":{
             "type":"letter",
             "content":"V"
         },
-        "W":{
+        "w":{
             "type":"letter",
             "content":"W"
         },
-        "X":{
+        "x":{
             "type":"letter",
             "content":"X"
         },
-        "Y":{
+        "y":{
             "type":"letter",
             "content":"Y"
         },
-        "Z":{
+        "z":{
             "type":"letter",
-            "content":"1"
+            "content":"Z"
         },
         "triforce":{
             "type":"svg",
@@ -161,3 +163,4 @@
         }
     }
 }
+export default Config;
