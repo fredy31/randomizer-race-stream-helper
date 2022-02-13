@@ -1,6 +1,6 @@
 # Randomiser Race Stream Helper #
 
-*URL of the website:* http://speedrun-randomizer-helper.fredericpilon.com/
+*URL of the website:* https://speedrun-randomizer-helper.fredericpilon.com/
 
 Hello!
 
