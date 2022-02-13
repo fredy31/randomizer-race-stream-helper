@@ -53,8 +53,8 @@ interface Props{
 
 const ItemComp:React.FC<Props> = ({item,got,bgKey}) => {
     const itemsArray = JSON.parse(JSON.stringify(Config.items));
-    if(item){
-        //console.log(Config.items[item]);
+
+    if(item && typeof itemsArray[item] !== 'undefined'){
         const alt = (itemsArray[item]["nicename"]) ? itemsArray[item]["nicename"] : itemsArray[item]["content"];
         if(itemsArray[item]["type"] === 'svg' || itemsArray[item]["type"] === 'png'){
             //import {ReactComponent as SVGImage} from '../images/'+itemsArray[item]['content']+'.svg';

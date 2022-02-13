@@ -67,7 +67,7 @@ const RoomJoining:React.FC<Props> = ({roomcode}) => {
         }
     },[roomcode,spectateData])
     var [player,changePlayer] = useState('')
-    console.log(spectateData)
+    //console.log(spectateData)
     if(spectateData.length!==0 && spectateData !== 'null'){
         const data = JSON.parse(spectateData);
         return <Body>

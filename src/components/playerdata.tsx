@@ -41,17 +41,19 @@ interface Props{
 }
 
 const PlayerData:React.FC <Props> = ({fullList,playerName,playerData,bgKey}) => {
-    if(playerData != 'null'){
-        const itemList = fullList.split(',')
+    if(playerData !== 'null'){
+        const itemList = (typeof fullList !== 'undefined') ? fullList.split(',') : [];
         const itemGotList = playerData.split(',')
+        var i = 0;
         return <Player borderColor={getContrastYIQ(bgKey)}>
             <Name>{playerName}</Name>
             <ItemList>
                 {itemList.map((el)=>{
-                    if(el == '|'){
-                        return <ItemNewLine></ItemNewLine>
+                    i++;
+                    if(el === '|'){
+                        return <ItemNewLine key={'nl-'+i}></ItemNewLine>
                     }else{
-                        return <ItemComp key={playerName + '-' + el} item={el} got={(itemGotList.indexOf(el) != -1 || playerData === 'Admin')} />
+                        return <ItemComp key={playerName + '-' + el} item={el} got={(itemGotList.indexOf(el) !== -1 || playerData === 'Admin')} />
                     }
                 })}
             </ItemList>

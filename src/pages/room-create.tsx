@@ -40,11 +40,13 @@ const RoomCreate:React.FC<Props> = ({roomcode}) => {
                     'items' : '',
                     'players' : {}
                 };
-                console.log(prevDB);
-                if(createCode in prevDB){
-                    set(ref(db,'/'),prevDB).catch(alert);
+                //console.log(prevDB);
+                if(window.location.pathname.includes('/new')){
+                    if(createCode in prevDB){
+                        set(ref(db,'/'),prevDB).catch((e)=>{console.log(e)});
+                    }
+                    navigate('/room/'+createCode);
                 }
-                navigate('/room/'+createCode);
             };
         });
     },[roomcode,createCode])
