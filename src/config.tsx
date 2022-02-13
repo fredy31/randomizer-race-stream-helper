@@ -162,6 +162,9 @@ const Config = {
             "content":"pokemon-tm",
             "nicename": "Pokémon - Technical Machine (TM)"
         }
+    },
+    "sets":{
+        "pokemon":"pokemon-tm,pokemon-pokeball,r"
     }
 }
 export default Config;

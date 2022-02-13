@@ -121,6 +121,7 @@ const RoomManagement:React.FC<Props> = ({roomcode}) => {
     }
     if(spectateData.length>5 && spectateData !== null){
         const data = JSON.parse(spectateData);
+        const sets = JSON.parse(JSON.stringify(Config.sets));
         return <Body>
             <Header></Header>
             <RoomModForm>
@@ -166,6 +167,16 @@ const RoomManagement:React.FC<Props> = ({roomcode}) => {
                         set(ref(db,String(roomcode).toLowerCase()+'/items'),e.target.value).catch((e)=>{console.log(e)});
                     }
                 }  />
+                <p>Or select a premade set</p>
+                <Pills>
+                    {Object.keys(Config.sets).map((key:string, index:number) => {
+                        return <div key={key} onClick={
+                            () => {
+                                set(ref(db,String(roomcode).toLowerCase()+'/items'),sets[key]).catch((e)=>{console.log(e)});   
+                            }
+                        }>{key}</div>
+                    })}
+                </Pills>
                 <PlayerData key={'player'} fullList={data.items} playerName={'Admin'} playerData={'Admin'} />
 
                 {/* PLAYERS SECTION */}
