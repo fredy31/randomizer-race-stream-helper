@@ -37,18 +37,20 @@ const RoomSpectate:React.FC<Props> = ({roomcode}) => {
         const dataRef = ref(db,String(roomcode).toLowerCase());
         if(spectateData === ''){
             onValue(dataRef,(snapshot) => {
-                setSpectateData(JSON.stringify(snapshot.val()));
+                var sectateDataEl = snapshot.val();
+                if(typeof sectateDataEl.players === 'undefined'){
+                    sectateDataEl = {
+                        'items': '',
+                        'players': {}
+                    }
+                }
+                setSpectateData(JSON.stringify(sectateDataEl));
             })
         }
     },[roomcode,spectateData])
     
     if(spectateData.length!==0){
         const data = JSON.parse(spectateData);
-        console.log(data.players);
-        Object.keys(data.players).map((k,i)=>{
-            console.log(k);
-            console.log(data.players[k]);
-        })
         return <Body>
             <Header></Header>
             <PlayerDataGrid>

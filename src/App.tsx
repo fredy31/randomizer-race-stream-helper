@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, RouteComponentProps, Link } from "@reach/router"
+import { Router, RouteComponentProps } from "@reach/router"
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -12,21 +12,19 @@ import RoomSpectate from './pages/room-spectate';
 import RoomPlayer from './pages/room-player';
 
 function App() {
+
   interface HomeProps extends RouteComponentProps{
   }
   const HomeRoute = (props:HomeProps) => (
     <Home />
   )
   
-  interface CreateProps extends RouteComponentProps{
-  }
-  const CreateRoute = (props:CreateProps) => (
-    <RoomCreate />
-  )
-  
   interface RoomCodeProp extends RouteComponentProps{
     roomcode?:string
   }
+  const CreateRoute = (props:RoomCodeProp) => (
+    <RoomCreate roomcode={props.roomcode ? props.roomcode : ''} />
+  )
   const JoinRoute = (props:RoomCodeProp) => (
     <RoomJoin roomcode={props.roomcode ? props.roomcode : ''} />
   )
@@ -49,6 +47,7 @@ function App() {
       <Router>
         <HomeRoute path="/" />
         <CreateRoute path="/new/" />
+        <CreateRoute path="/new/:roomcode" />
         <JoinRoute path="/room/:roomcode" />
         <ManageRoute path="/room/:roomcode/admin" />
         <SpectateRoute path="/room/:roomcode/spectate" />

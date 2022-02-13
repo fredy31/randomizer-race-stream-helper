@@ -55,13 +55,20 @@ const RoomJoining:React.FC<Props> = ({roomcode}) => {
         const dataRef = ref(db,String(roomcode).toLowerCase());
         if(spectateData === ''){
             onValue(dataRef,(snapshot) => {
-                setSpectateData(JSON.stringify(snapshot.val()));
+                var sectateDataEl = snapshot.val();
+                if(typeof sectateDataEl.players === 'undefined'){
+                    sectateDataEl = {
+                        'items': '',
+                        'players': {}
+                    }
+                }
+                setSpectateData(JSON.stringify(sectateDataEl));
             })
         }
     },[roomcode,spectateData])
     var [player,changePlayer] = useState('')
     console.log(spectateData)
-    if(spectateData.length!==0 && spectateData != 'null'){
+    if(spectateData.length!==0 && spectateData !== 'null'){
         const data = JSON.parse(spectateData);
         return <Body>
             <Header></Header>
@@ -82,13 +89,13 @@ const RoomJoining:React.FC<Props> = ({roomcode}) => {
                             })}
                             
                         </RoomCodeInput>
-                        <Button linkto={'/room/'+roomcode+'/player/'+player} isDisabled={(player !="")?false:true}>Join room</Button>
+                        <Button linkto={'/room/'+roomcode+'/player/'+player} isDisabled={(player !=="")?false:true}>Join room</Button>
                     </JoinRoomForm>
                     <br /><Button linkto={'/'}>Exit</Button>
                 </JoinBox>
             </BoxToPageCenter>
         </Body>
-    }else if(spectateData == 'null'){
+    }else if(spectateData === 'null'){
         return <Body>
             <Header></Header>
             <BoxToPageCenter>
