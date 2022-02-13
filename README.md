@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Randomiser Race Stream Helper #
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+*URL of the website:* http://speedrun-randomizer-helper.fredericpilon.com/
 
-## Available Scripts
+Hello!
 
-In the project directory, you can run:
+This is a tool I built after there seemed to be some problems with the randomisers trackers on AGDQ 2022. (And I needed something to train my react with.)
 
-### `npm start`
+I'm not a speedrunner myself, so if there is some features that would better the experience, tell me about it by contacting /u/fredy31 on Reddit, or put in a bug request on this Github.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features ##
+- Automatic Room creation (You can put in a custom name too!)
+- A control to change the key color, so the one streaming the event can put a greenscreen on, and the players can put a black background that is easier for the eyes.
+- Item sets for easy setup (Have an item/item set to add? Contact me with the instructions above!)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Wanna setup on your own server? ## 
 
-### `npm test`
+Go ahead! This has a configuration file to make it easy.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1- Checkout the whole project on your PC.
+2- Create yourself an account with Google Firebase
+3- In `/src/config.tsx`, put in the API information to connect to your account instead of mine (this can be used to have a more secure database for your rooms)
+4- You may add items/item sets in that config also
+5- At this point, you will need node. Run NPM I at the root of the projet to install everything you will need.
+6a- You can run the site locally by doing `npm run start`.
+6b- You can run the site online by doing `npm run build` and then uploading the build folder anywhere.
 
-### `npm run build`
+## Wanna contribute? ##
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Like I said before, this was, for me, a project to learn react and typescript. If you have any toughts about how the code could be better, or find any bugs, please tell me with the above contact information.

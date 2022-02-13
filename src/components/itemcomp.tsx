@@ -63,10 +63,14 @@ const ItemComp:React.FC<Props> = ({item,got,bgKey}) => {
 
     if(item && typeof itemsArray[item] !== 'undefined'){
         const alt = (itemsArray[item]["nicename"]) ? itemsArray[item]["nicename"] : itemsArray[item]["content"];
-        if(itemsArray[item]["type"] === 'svg' || itemsArray[item]["type"] === 'png'){
+        if(itemsArray[item]["type"] === 'svg'){
+            return <ItemStyle color={bgKey} gotStyle={got}>
+                <img src={'/images/svg/'+itemsArray[item]['content']+'.'+itemsArray[item]["type"]} alt={alt} />
+            </ItemStyle>
+        }else if(itemsArray[item]["type"] === 'png'){
             //import {ReactComponent as SVGImage} from '../images/'+itemsArray[item]['content']+'.svg';
             return <ItemStyle color={bgKey} gotStyle={got}>
-                <img src={'/images/'+itemsArray[item]['content']+'.'+itemsArray[item]["type"]} alt={alt} />
+                <img src={'/images/png/'+itemsArray[item]['content']+'.'+itemsArray[item]["type"]} alt={alt} />
             </ItemStyle>
         }else{
             return <ItemStyle color={bgKey} gotStyle={got}>
