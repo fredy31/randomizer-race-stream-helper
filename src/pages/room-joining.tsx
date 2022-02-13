@@ -55,14 +55,14 @@ const RoomJoining:React.FC<Props> = ({roomcode}) => {
         const dataRef = ref(db,String(roomcode).toLowerCase());
         if(spectateData === ''){
             onValue(dataRef,(snapshot) => {
-                var sectateDataEl = snapshot.val();
-                if(typeof sectateDataEl.players === 'undefined'){
-                    sectateDataEl = {
+                var spectateDataEl = snapshot.val();
+                if(typeof spectateDataEl.players === 'undefined'){
+                    spectateDataEl = {
                         'items': '',
                         'players': {}
                     }
                 }
-                setSpectateData(JSON.stringify(sectateDataEl));
+                setSpectateData(JSON.stringify(spectateDataEl));
             })
         }
     },[roomcode,spectateData])

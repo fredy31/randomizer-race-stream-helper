@@ -22,6 +22,13 @@ const ItemStyle = styled.div<{gotStyle?: Boolean, color?:string}>`
     color:${props=>props.color?getContrastYIQ(props.color):'#000'};
     opacity:${props=>props.gotStyle ? '1' : '0.5'};
     cursor:default;
+    img{
+        object-fit:contain;
+        max-width:80px;
+        width:80px;
+        height:80px;
+        max-height:80px;
+    }
     span{
         font-size:80px;
         -webkit-text-stroke: ${props=>props.color?getContrastYIQInverse(props.color):'#fff'} 3px;

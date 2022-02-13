@@ -37,10 +37,11 @@ interface Props{
     fullList: string,
     playerName: string,
     playerData: string,
-    bgKey:string
+    bgKey:string,
+    updateItem?:Function
 }
 
-const PlayerData:React.FC <Props> = ({fullList,playerName,playerData,bgKey}) => {
+const PlayerData:React.FC <Props> = ({fullList,playerName,playerData,bgKey,updateItem}) => {
     if(playerData !== 'null'){
         const itemList = (typeof fullList !== 'undefined') ? fullList.split(',') : [];
         const itemGotList = playerData.split(',')
@@ -53,7 +54,14 @@ const PlayerData:React.FC <Props> = ({fullList,playerName,playerData,bgKey}) => 
                     if(el === '|'){
                         return <ItemNewLine key={'nl-'+i}></ItemNewLine>
                     }else{
-                        return <ItemComp key={playerName + '-' + el} item={el} got={(itemGotList.indexOf(el) !== -1 || playerData === 'Admin')} />
+                        return <div key={playerName + '-' + el}  onClick={updateItem 
+                                ? ()=>{updateItem(el)} 
+                                : ()=>{return false}
+                            }>
+                            <ItemComp 
+                                item={el} got={(itemGotList.indexOf(el) !== -1 || playerData === 'Admin')}
+                            />
+                        </div>
                     }
                 })}
             </ItemList>

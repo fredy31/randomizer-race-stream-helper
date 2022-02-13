@@ -4,7 +4,7 @@ import Header from '../components/header';
 import Loader from '../pages/loader';
 
 import { initializeApp, setLogLevel } from '@firebase/app';
-import {getDatabase, ref, onValue} from '@firebase/database';
+import {getDatabase, ref, onValue, set} from '@firebase/database';
 import Config from './../config';
 
 import PlayerData from '../components/playerdata';
@@ -22,21 +22,34 @@ const RoomPlayer:React.FC<Props> = ({roomcode,player}) => {
         authDomain: Config.firebaseAuthDomain
     });
     setLogLevel('debug');
+    const db = getDatabase();
     useEffect(()=>{
-        const db = getDatabase();
         const dataRef = ref(db,String(roomcode).toLowerCase());
         if(spectateData === ''){
             onValue(dataRef,(snapshot) => {
                 setSpectateData(JSON.stringify(snapshot.val()));
             })
         }
-    },[roomcode,spectateData])
+    },[roomcode,spectateData]);
+    //Update element
+    const updateItem = (el:string) => {
+        var data = JSON.parse(spectateData);
+        var value = data.players[player] ? data.players[player].split(',') : [];
+        var indOf = value.indexOf(el);
+        if(indOf === -1){
+            value.push(el);
+        }else{
+            value.splice(indOf,1);
+        }
+        console.log(value.toString());
+        set(ref(db,String(roomcode).toLowerCase()+'/players/'+player),value.toString()).catch((e)=>{console.log(e)});
+    }
     if(spectateData.length!==0){
         const data = JSON.parse(spectateData);
         //console.log(data);
         return <Body>
             <Header></Header>
-            <PlayerData key={'player'} fullList={data.items} playerName={player} playerData={data.players[player]} />
+            <PlayerData key={'player'} fullList={data.items} playerName={player} playerData={data.players[player]} updateItem={updateItem} />
         </Body>
     }else{
         return <Body>
