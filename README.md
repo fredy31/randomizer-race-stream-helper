@@ -18,11 +18,17 @@ I'm not a speedrunner myself, so if there is some features that would better the
 Go ahead! This has a configuration file to make it easy.
 
 1- Checkout the whole project on your PC.
+
 2- Create yourself an account with Google Firebase
+
 3- In `/src/config.tsx`, put in the API information to connect to your account instead of mine (this can be used to have a more secure database for your rooms)
+
 4- You may add items/item sets in that config also
+
 5- At this point, you will need node. Run NPM I at the root of the projet to install everything you will need.
+
 6a- You can run the site locally by doing `npm run start`.
+
 6b- You can run the site online by doing `npm run build` and then uploading the build folder anywhere.
 
 ## Wanna contribute? ##
