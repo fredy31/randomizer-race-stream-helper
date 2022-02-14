@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import Body from '../layouts/body'
 import Helmet from 'react-helmet';
 import Header from '../components/header';
+import Loader from '../pages/loader';
 
 import { initializeApp, setLogLevel } from '@firebase/app';
 import {getDatabase, ref, onValue, set} from '@firebase/database';
@@ -57,7 +58,7 @@ const RoomCreate:React.FC<Props> = ({roomcode}) => {
             <title>Creating a new room</title>
         </Helmet>
         <Header />
-        <div>{createCode}</div>
+        <Loader />
     </Body>
 }
 
