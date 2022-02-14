@@ -43,6 +43,8 @@ const RoomPlayer:React.FC<Props> = ({roomcode,player}) => {
         }
         console.log(value.toString());
         set(ref(db,String(roomcode).toLowerCase()+'/players/'+player),value.toString()).catch((e)=>{console.log(e)});
+        var date = new Date();
+        set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
     }
     if(spectateData.length!==0){
         const data = JSON.parse(spectateData);

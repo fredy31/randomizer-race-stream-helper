@@ -36,9 +36,11 @@ const RoomCreate:React.FC<Props> = ({roomcode}) => {
         onValue(dataRef,(snapshot) => {
             var prevDB = snapshot.val();
             if (typeof createCode === 'string'){
+                var date = new Date();
                 prevDB[createCode] = {
                     'items' : '',
-                    'players' : {}
+                    'players' : {},
+                    'last-change':date.toISOString(),
                 };
                 //console.log(prevDB);
                 if(window.location.pathname.includes('/new')){

@@ -38,6 +38,14 @@ const RoomCodeInput = styled.select`
     font-size:18px;
 `;
 
+const InfoParagraph = styled.p`
+    text-align:center;
+    span{
+        cursor:pointer;
+        text-decoration:underline;
+    }
+`;
+
 interface Props{
     roomcode?:string
 };
@@ -74,6 +82,14 @@ const RoomJoining:React.FC<Props> = ({roomcode}) => {
             <Header></Header>
             <BoxToPageCenter>
                 <JoinBox>
+                    <InfoParagraph>
+                        Want to invite a player to this room? Share them the current URL!<br />
+                        <span onClick={()=>{
+                            navigator.clipboard.writeText(window.location.hostname+'/room/'+roomcode)
+                        }}>
+                            Add room URL to my clipboard
+                        </span>
+                    </InfoParagraph>
                     <Button linkto={'/room/'+roomcode+'/admin'}>Manage</Button>
                     <br /><Button linkto={'/room/'+roomcode+'/spectate'}>Spectate</Button>
                     <JoinRoomForm>

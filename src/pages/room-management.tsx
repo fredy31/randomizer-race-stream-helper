@@ -18,10 +18,13 @@ import styled from 'styled-components';
 const RoomModForm = styled.div`
     width:100%;
     overflow:hidden;
+    padding:0 16px;
+    box-sizing:border-box;
     input{
         width:100%;
         height:52px;
         margin-bottom:32px;
+        box-sizing:border-box;
     }
     >p{
         text-align:center;
@@ -108,6 +111,8 @@ const RoomManagement:React.FC<Props> = ({roomcode}) => {
         //console.log(data);
         data.map((e:string)=>{
             set(ref(db,String(roomcode).toLowerCase()+'/players/'+e),'').catch((e)=>{console.log(e)});
+            var date = new Date();
+            set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
             return false;
         })
         setPlayers('');
@@ -157,6 +162,8 @@ const RoomManagement:React.FC<Props> = ({roomcode}) => {
                                 }
                                 console.log(value.toString());
                                 set(ref(db,String(roomcode).toLowerCase()+'/items'),value.toString()).catch((e)=>{console.log(e)});
+                                var date = new Date();
+                                set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
                             }
                         }>{key}</div>
                     })}
@@ -165,6 +172,8 @@ const RoomManagement:React.FC<Props> = ({roomcode}) => {
                     (e)=>{
                         console.log(e.target.value)
                         set(ref(db,String(roomcode).toLowerCase()+'/items'),e.target.value).catch((e)=>{console.log(e)});
+                        var date = new Date();
+                        set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
                     }
                 }  />
                 <p>Or select a premade set</p>
@@ -173,6 +182,8 @@ const RoomManagement:React.FC<Props> = ({roomcode}) => {
                         return <div key={key} onClick={
                             () => {
                                 set(ref(db,String(roomcode).toLowerCase()+'/items'),sets[key]).catch((e)=>{console.log(e)});   
+                                var date = new Date();
+                                set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
                             }
                         }>{key}</div>
                     })}
