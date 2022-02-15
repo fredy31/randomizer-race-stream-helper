@@ -65,13 +65,28 @@ const Pills = styled.div`
 
 const Flex = styled.div`
     display:flex;
-    align-items:center;
+    align-items:flex-top;
     gap:16px;
     margin-bottom:32px;
+    width:100%;
     input{
         margin-bottom:0;
     }
+    textarea{
+        width:100%;
+        height:300px;
+    }
 `
+const FlexHalf = styled.div`
+    width:50%;
+    position:relative;
+`;
+
+const Sticky = styled.div`
+    position:sticky;
+    top:0;
+    left:0;
+`;
 
 interface Props{
     roomcode:string
@@ -143,52 +158,6 @@ const RoomManagement:React.FC<Props> = ({roomcode}) => {
                         <Button linkto='#'>Delete room</Button>
                     </div>
                 </Flex>
-                <h3 id='items'>Items</h3>
-                <p>
-                    Add the elements you want (check config.tsx for all possible elements).<br />
-                    Put a comma (,) between each element. No spaces.<br />
-                    Split lines with the pipe (|)
-                </p>
-                <Pills>
-                    {Object.keys(Config.items).map(key => {
-                        return <div key={key} onClick={
-                            () => {
-                                var value = data.items.split(',');
-                                var indOf = value.indexOf(key);
-                                if(indOf === -1 || value === '|'){
-                                    value.push(key);
-                                }else{
-                                    value.splice(indOf,1);
-                                }
-                                console.log(value.toString());
-                                set(ref(db,String(roomcode).toLowerCase()+'/items'),value.toString()).catch((e)=>{console.log(e)});
-                                var date = new Date();
-                                set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
-                            }
-                        }>{key}</div>
-                    })}
-                </Pills>
-                <input type="text" ref={itemListRef} value={data.items ? data.items : ''} onChange={
-                    (e)=>{
-                        console.log(e.target.value)
-                        set(ref(db,String(roomcode).toLowerCase()+'/items'),e.target.value).catch((e)=>{console.log(e)});
-                        var date = new Date();
-                        set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
-                    }
-                }  />
-                <p>Or select a premade set</p>
-                <Pills>
-                    {Object.keys(Config.sets).map((key:string, index:number) => {
-                        return <div key={key} onClick={
-                            () => {
-                                set(ref(db,String(roomcode).toLowerCase()+'/items'),sets[key]).catch((e)=>{console.log(e)});   
-                                var date = new Date();
-                                set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
-                            }
-                        }>{key}</div>
-                    })}
-                </Pills>
-                <PlayerData key={'player'} fullList={data.items} playerName={'Admin'} playerData={'Admin'} />
 
                 {/* PLAYERS SECTION */}
                 <h3 id='players'>Players</h3>
@@ -214,6 +183,69 @@ const RoomManagement:React.FC<Props> = ({roomcode}) => {
                         <Button linkto="#">Submit new players</Button>
                     </div>
                 </Flex>
+
+                {/* SECTION ITEMS */}
+                <h3 id='items'>Items</h3>
+                <Flex>
+                    <FlexHalf>
+                        <p>Select a premade set</p>
+                        <Pills>
+                            {Object.keys(Config.sets).map((key:string, index:number) => {
+                                return <div key={key} onClick={
+                                    () => {
+                                        set(ref(db,String(roomcode).toLowerCase()+'/items'),sets[key]).catch((e)=>{console.log(e)});   
+                                        var date = new Date();
+                                        set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
+                                    }
+                                }>{key}</div>
+                            })}
+                        </Pills>
+                        <p>
+                            Or add the elements you want in the textual configuration (check config.tsx for all possible elements).<br />
+                            Put a comma (,) between each element. No spaces.<br />
+                            Split lines with the pipe (|)<br />
+                            Items that are not found in the config will be ignored.
+                        </p>
+                        <Pills>
+                            {Object.keys(Config.items).map(key => {
+                                return <div key={key} onClick={
+                                    () => {
+                                        var value = data.items.split(',');
+                                        var indOf = value.indexOf(key);
+                                        if(indOf === -1 || value === '|'){
+                                            value.push(key);
+                                        }else{
+                                            value.splice(indOf,1);
+                                        }
+                                        console.log(value.toString());
+                                        set(ref(db,String(roomcode).toLowerCase()+'/items'),value.toString()).catch((e)=>{console.log(e)});
+                                        var date = new Date();
+                                        set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
+                                    }
+                                }>{key}</div>
+                            })}
+                        </Pills>
+                    </FlexHalf>
+                    <FlexHalf>
+                        <Sticky>
+                            <p>Items (textual)</p>
+                            <textarea ref={itemListRef}  onChange={
+                                (e)=>{
+                                    console.log(e.target.value)
+                                    set(ref(db,String(roomcode).toLowerCase()+'/items'),e.target.value).catch((e)=>{console.log(e)});
+                                    var date = new Date();
+                                    set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
+                                }
+                            } value={data.items ? data.items : ''}>
+                                
+                            </textarea>
+                            <p>Items (preview)</p>
+                            <PlayerData key={'player'} fullList={data.items} playerName={'Admin'} playerData={'Admin'} />
+                        </Sticky>
+                    </FlexHalf>
+                </Flex>
+
+                
             </RoomModForm>
         </Body>
     }else{

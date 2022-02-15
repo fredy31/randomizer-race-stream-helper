@@ -51,7 +51,10 @@ const PlayerData:React.FC <Props> = ({fullList,playerName,playerData,bgKey,updat
             <ItemList>
                 {itemList.map((el)=>{
                     i++;
-                    if(el === '|'){
+                    //el.replace('\n','').replace(/(\r\n|\n|\r)/gm, "");;
+                    if(!el){
+                        return <React.Fragment />
+                    }else if(el === '|'){
                         return <ItemNewLine key={'nl-'+i}></ItemNewLine>
                     }else{
                         return <div key={playerName + '-' + el}  onClick={updateItem 

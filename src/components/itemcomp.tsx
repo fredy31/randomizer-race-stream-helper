@@ -21,6 +21,8 @@ const ItemStyle = styled.div<{gotStyle?: Boolean, color?:string}>`
     text-transform:uppercase;
     color:${props=>props.color?getContrastYIQ(props.color):'#000'};
     opacity:${props=>props.gotStyle ? '1' : '0.5'};
+    filter:${props=>props.gotStyle ? 'none' : 'grayscale(100%)'};
+    transition:0.3s all ease-out;
     cursor:default;
     img{
         object-fit:contain;
@@ -67,7 +69,7 @@ const ItemComp:React.FC<Props> = ({item,got,bgKey}) => {
             return <ItemStyle color={bgKey} gotStyle={got}>
                 <img src={'/images/svg/'+itemsArray[item]['content']+'.'+itemsArray[item]["type"]} alt={alt} />
             </ItemStyle>
-        }else if(itemsArray[item]["type"] === 'png'){
+        }else if(itemsArray[item]["type"] === 'png' || itemsArray[item]["type"] === 'webp'){
             //import {ReactComponent as SVGImage} from '../images/'+itemsArray[item]['content']+'.svg';
             return <ItemStyle color={bgKey} gotStyle={got}>
                 <img src={'/images/png/'+itemsArray[item]['content']+'.'+itemsArray[item]["type"]} alt={alt} />
