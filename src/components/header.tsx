@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { BlockPicker } from 'react-color';
 
 import { connect } from "react-redux";
-import bgKey from './../actionCreator/bgKey'
+import bgKey from './../actionCreator/bgKey';
+import itemZoom from '../actionCreator/itemZoom';
 
 const HeaderStyles = styled.div`
     display:flex;
@@ -52,10 +53,12 @@ const ColorPickerStyles = styled(BlockPicker)`
 
 interface Props{
     bgKey:string,
+    itemZoom:number,
     setBgKey:any,
+    setItemZoom:any,
 };
 
-const Header:React.FC<Props> = ({bgKey,setBgKey}) => {
+const Header:React.FC<Props> = ({bgKey,setBgKey,itemZoom,setItemZoom}) => {
     const [keyPickOpen, setKeyPickOpen] = useState(false);
     //const [bgKey, setBgKey] = useState('#111111');
     return <HeaderStyles>
@@ -72,16 +75,22 @@ const Header:React.FC<Props> = ({bgKey,setBgKey}) => {
                     /> : <React.Fragment /> }
                 </KeyPickerContainer>
             </div>
+            <div>
+                Item sizes:
+                <input type="number" value={itemZoom ? itemZoom : 100} onChange={(e)=>{setItemZoom(e.target.value)}} />
+            </div>
         </WebsiteStates>
     </HeaderStyles>
 }
 const mapStateToProps = (state:any) => {
     return {
         bgKey: state.bgKey,
+        itemZoom: state.itemZoom,
     };
 };
 const mapDispatchToProps = (dispatch:any) => ({
     setBgKey: (key:any) => dispatch(bgKey(key)),
+    setItemZoom: (key:any) => dispatch(itemZoom(key)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

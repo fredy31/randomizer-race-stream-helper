@@ -5,16 +5,17 @@ import Config from '../config';
 
 import { connect } from "react-redux";
 import bgKey from './../actionCreator/bgKey'
+import itemZoom from '../actionCreator/itemZoom';
 
-const ItemStyle = styled.div<{gotStyle?: Boolean, color?:string}>`
-    padding:36px;
+const ItemStyle = styled.div<{gotStyle?: Boolean, color?:string, itemZoom:number}>`
+    padding:${props=>props.itemZoom?36*props.itemZoom/100+'px':'36px'};;
     display:flex;
     align-items:center;
     justify-content:center;
-    max-width:80px;
-    width:80px;
-    height:80px;
-    max-height:80px;
+    max-width:${props=>props.itemZoom?80*props.itemZoom/100+'px':'80px'};
+    width:${props=>props.itemZoom?80*props.itemZoom/100+'px':'80px'};;
+    height:${props=>props.itemZoom?80*props.itemZoom/100+'px':'80px'};;
+    max-height:${props=>props.itemZoom?80*props.itemZoom/100+'px':'80px'};;
     overflow:hidden;
     color:currentColor;
     font-weight:900;
@@ -26,14 +27,14 @@ const ItemStyle = styled.div<{gotStyle?: Boolean, color?:string}>`
     cursor:default;
     img{
         object-fit:contain;
-        max-width:80px;
-        width:80px;
-        height:80px;
-        max-height:80px;
+        max-width:100%;
+        width:100%;
+        height:100%;
+        max-height:100%;
     }
     span{
-        font-size:80px;
-        -webkit-text-stroke: ${props=>props.color?getContrastYIQInverse(props.color):'#fff'} 3px;
+        font-size:${props=>props.itemZoom?80*props.itemZoom/100+'px':'80px'};
+        -webkit-text-stroke: ${props=>props.color?getContrastYIQInverse(props.color):'#fff'} ${props=>props.itemZoom?3*props.itemZoom/100+'px':'3px'};
     }
 `
 
@@ -57,25 +58,26 @@ const getContrastYIQInverse = (hexcolor:string) => {
 interface Props{
     item : string,
     got : Boolean,
-    bgKey:string
+    bgKey:string,
+    itemZoom:number
 };
 
-const ItemComp:React.FC<Props> = ({item,got,bgKey}) => {
+const ItemComp:React.FC<Props> = ({item,got,bgKey,itemZoom}) => {
     const itemsArray = JSON.parse(JSON.stringify(Config.items));
 
     if(item && typeof itemsArray[item] !== 'undefined'){
         const alt = (itemsArray[item]["nicename"]) ? itemsArray[item]["nicename"] : itemsArray[item]["content"];
         if(itemsArray[item]["type"] === 'svg'){
-            return <ItemStyle color={bgKey} gotStyle={got}>
+            return <ItemStyle color={bgKey} itemZoom={itemZoom} gotStyle={got}>
                 <img src={'/images/svg/'+itemsArray[item]['content']+'.'+itemsArray[item]["type"]} alt={alt} />
             </ItemStyle>
         }else if(itemsArray[item]["type"] === 'png' || itemsArray[item]["type"] === 'webp'){
             //import {ReactComponent as SVGImage} from '../images/'+itemsArray[item]['content']+'.svg';
-            return <ItemStyle color={bgKey} gotStyle={got}>
+            return <ItemStyle color={bgKey} itemZoom={itemZoom} gotStyle={got}>
                 <img src={'/images/png/'+itemsArray[item]['content']+'.'+itemsArray[item]["type"]} alt={alt} />
             </ItemStyle>
         }else{
-            return <ItemStyle color={bgKey} gotStyle={got}>
+            return <ItemStyle color={bgKey} itemZoom={itemZoom} gotStyle={got}>
                 <span>{itemsArray[item]['content']}</span>
             </ItemStyle>
         }
@@ -87,6 +89,7 @@ const ItemComp:React.FC<Props> = ({item,got,bgKey}) => {
 const mapStateToProps = (state:any) => {
     return {
         bgKey: state.bgKey,
+        itemZoom: state.itemZoom,
     };
 };
 const mapDispatchToProps = (dispatch:any) => ({
