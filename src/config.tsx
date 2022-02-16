@@ -1,6 +1,7 @@
-import GenericLetters from "./items/genericletters";
-import PokemonBadges from "./items/pokemonbadges";
-import PokemonOthers from "./items/pokemonothers";
+import GenericLetters from "./items/generic-letters";
+import PokemonBadges from "./items/pokemon-badges";
+import PokemonOthers from "./items/pokemon-others";
+import ZeldaLTTP from "./items/zelda-lttp";
 
 const Config = {
     "firebaseURL":"https://speedruntracker-default-rtdb.firebaseio.com",
@@ -10,6 +11,7 @@ const Config = {
        ...GenericLetters,
        ...PokemonBadges,
        ...PokemonOthers,
+       ...ZeldaLTTP,
         "triforce":{
             "type":"svg",
             "content":"triforce",

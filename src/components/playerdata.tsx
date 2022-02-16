@@ -57,12 +57,22 @@ const PlayerData:React.FC <Props> = ({fullList,playerName,playerData,bgKey,updat
                     }else if(el === '|'){
                         return <ItemNewLine key={'nl-'+i}></ItemNewLine>
                     }else{
+                        let itemStatus = 0;
+                        if(itemGotList.indexOf(el) !== -1 || itemGotList.indexOf(el+'|1') !== -1 || playerData === 'Admin'){
+                            itemStatus = 1;
+                        }else if(itemGotList.indexOf(el+'|2') !== -1){
+                            //Messy way to check for upgrades
+                            itemStatus = 2;
+                        }else if(itemGotList.indexOf(el+'|3') !== -1){
+                            //Messy way to check for upgrades
+                            itemStatus = 3;
+                        }
                         return <div key={playerName + '-' + el}  onClick={updateItem 
                                 ? ()=>{updateItem(el)} 
                                 : ()=>{return false}
                             }>
                             <ItemComp 
-                                item={el} got={(itemGotList.indexOf(el) !== -1 || playerData === 'Admin')}
+                                item={el} got={itemStatus}
                             />
                         </div>
                     }

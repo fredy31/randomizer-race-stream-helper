@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import bgKey from './../actionCreator/bgKey'
 import itemZoom from '../actionCreator/itemZoom';
 
-const ItemStyle = styled.div<{gotStyle?: Boolean, color?:string, itemZoom:number}>`
+const ItemStyle = styled.div<{gotStyle?: number, color?:string, itemZoom:number}>`
     padding:${props=>props.itemZoom?36*props.itemZoom/100+'px':'36px'};;
     display:flex;
     align-items:center;
@@ -21,8 +21,8 @@ const ItemStyle = styled.div<{gotStyle?: Boolean, color?:string, itemZoom:number
     font-weight:900;
     text-transform:uppercase;
     color:${props=>props.color?getContrastYIQ(props.color):'#000'};
-    opacity:${props=>props.gotStyle ? '1' : '0.5'};
-    filter:${props=>props.gotStyle ? 'none' : 'grayscale(100%)'};
+    opacity:${props=>props.gotStyle !== 0 ? '1' : '0.5'};
+    filter:${props=>props.gotStyle !== 0 ? 'none' : 'grayscale(100%)'};
     transition:0.3s all ease-out;
     cursor:default;
     img{
@@ -57,7 +57,7 @@ const getContrastYIQInverse = (hexcolor:string) => {
 
 interface Props{
     item : string,
-    got : Boolean,
+    got : number,
     bgKey:string,
     itemZoom:number
 };
@@ -68,13 +68,22 @@ const ItemComp:React.FC<Props> = ({item,got,bgKey,itemZoom}) => {
     if(item && typeof itemsArray[item] !== 'undefined'){
         const alt = (itemsArray[item]["nicename"]) ? itemsArray[item]["nicename"] : itemsArray[item]["content"];
         if(itemsArray[item]["type"] === 'svg'){
+            //TODO : IMPORT SVG ON THE FLY
             return <ItemStyle color={bgKey} itemZoom={itemZoom} gotStyle={got}>
                 <img src={'/images/svg/'+itemsArray[item]['content']+'.'+itemsArray[item]["type"]} alt={alt} />
             </ItemStyle>
         }else if(itemsArray[item]["type"] === 'png' || itemsArray[item]["type"] === 'webp'){
-            //import {ReactComponent as SVGImage} from '../images/'+itemsArray[item]['content']+'.svg';
+            let imgSrc = '/images/png/'+itemsArray[item]['content']+'.'+itemsArray[item]["type"];
+            //Custom Active
+            if(itemsArray[item]['active'] && got){
+                imgSrc = '/images/png/'+itemsArray[item]['active']+'.'+itemsArray[item]["type"]
+            }
+            //Upgrade Lvl2-3
+            if(itemsArray[item]['up2'] && got === 2){ imgSrc = '/images/png/'+itemsArray[item]['up2']+'.'+itemsArray[item]["type"] }
+            if(itemsArray[item]['up3'] && got === 3){ imgSrc = '/images/png/'+itemsArray[item]['up3']+'.'+itemsArray[item]["type"] }
+            //Render
             return <ItemStyle color={bgKey} itemZoom={itemZoom} gotStyle={got}>
-                <img src={'/images/png/'+itemsArray[item]['content']+'.'+itemsArray[item]["type"]} alt={alt} />
+                <img src={imgSrc} alt={alt} />
             </ItemStyle>
         }else{
             return <ItemStyle color={bgKey} itemZoom={itemZoom} gotStyle={got}>

@@ -36,12 +36,14 @@ const RoomPlayer:React.FC<Props> = ({roomcode,player}) => {
         var data = JSON.parse(spectateData);
         var value = data.players[player] ? data.players[player].split(',') : [];
         var indOf = value.indexOf(el);
+
+        //To update for upgrades
         if(indOf === -1){
             value.push(el);
         }else{
             value.splice(indOf,1);
         }
-        console.log(value.toString());
+
         set(ref(db,String(roomcode).toLowerCase()+'/players/'+player),value.toString()).catch((e)=>{console.log(e)});
         var date = new Date();
         set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
