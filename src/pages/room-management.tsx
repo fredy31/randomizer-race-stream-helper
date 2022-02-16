@@ -94,6 +94,7 @@ interface Props{
 
 const RoomManagement:React.FC<Props> = ({roomcode}) => {
     const [spectateData, setSpectateData] = useState<string>('');
+    const [itemSearch, setItemSearch] = useState<string>('');
     const [players, setPlayers] = useState<string>('');
     const itemListRef = useRef<any>(null);
     const playerInput = useRef<any>(null);
@@ -206,23 +207,29 @@ const RoomManagement:React.FC<Props> = ({roomcode}) => {
                             Split lines with the pipe (|)<br />
                             Items that are not found in the config will be ignored.
                         </p>
+                        <p>Search for an item in the database</p>
+                        <input type="text" value={itemSearch} onChange={(e)=>{setItemSearch(e.target.value)}}/>
                         <Pills>
                             {Object.keys(Config.items).map(key => {
-                                return <div key={key} onClick={
-                                    () => {
-                                        var value = data.items.split(',');
-                                        var indOf = value.indexOf(key);
-                                        if(indOf === -1 || value === '|'){
-                                            value.push(key);
-                                        }else{
-                                            value.splice(indOf,1);
+                                if(itemSearch && key.includes(itemSearch)){
+                                    return <div key={key} onClick={
+                                        () => {
+                                            var value = data.items.split(',');
+                                            var indOf = value.indexOf(key);
+                                            if(indOf === -1 || value === '|'){
+                                                value.push(key);
+                                            }else{
+                                                value.splice(indOf,1);
+                                            }
+                                            console.log(value.toString());
+                                            set(ref(db,String(roomcode).toLowerCase()+'/items'),value.toString()).catch((e)=>{console.log(e)});
+                                            var date = new Date();
+                                            set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
                                         }
-                                        console.log(value.toString());
-                                        set(ref(db,String(roomcode).toLowerCase()+'/items'),value.toString()).catch((e)=>{console.log(e)});
-                                        var date = new Date();
-                                        set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
-                                    }
-                                }>{key}</div>
+                                    }>{key}</div>
+                                }else{
+                                    <React.Fragment />
+                                }
                             })}
                         </Pills>
                     </FlexHalf>
