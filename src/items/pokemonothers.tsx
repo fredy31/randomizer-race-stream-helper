@@ -1,92 +1,92 @@
 const PokemonOthers = {
     "pokemon-pokeball":{
         "type":"svg",
-        "content":"pokeball",
+        "content":"pokemon-others/pokeball",
         "nicename": "Pokémon - Pokéball"
     },
     "pokemon-tm":{
         "type":"png",
-        "content":"pokemon-tm",
+        "content":"pokemon-others/pokemon-tm",
         "nicename": "Pokémon - Technical Machine (TM)"
     },
     "pokemon-bicycle":{
         "type":"png",
-        "content":"pokemon-bicycle",
+        "content":"pokemon-others/pokemon-bicycle",
         "nicename": "Pokémon - Bicycle"
     },
     "pokemon-basement-key":{
         "type":"png",
-        "content":"pokemon-basement-key",
+        "content":"pokemon-others/pokemon-basement-key",
         "nicename": "Pokémon - Basement key"
     },
     "pokemon-blue-card":{
         "type":"png",
-        "content":"pokemon-blue-card",
+        "content":"pokemon-others/pokemon-blue-card",
         "nicename": "Pokémon - Blue card"
     },
     "pokemon-card-key":{
         "type":"png",
-        "content":"pokemon-card-key",
+        "content":"pokemon-others/pokemon-card-key",
         "nicename": "Pokémon - Card Key"
     },
     "pokemon-ss-ticket":{
         "type":"png",
-        "content":"pokemon-ss-ticket",
+        "content":"pokemon-others/pokemon-ss-ticket",
         "nicename": "Pokémon - SS Anne Ticket"
     },
     "pokemon-pass":{
         "type":"png",
-        "content":"pokemon-pass",
+        "content":"pokemon-others/pokemon-pass",
         "nicename": "Pokémon - Pass"
     },
     "pokemon-lost-item":{
         "type":"png",
-        "content":"pokemon-lost-item",
+        "content":"pokemon-others/pokemon-lost-item",
         "nicename": "Pokémon - Lost item"
     },
     "pokemon-radio":{
         "type":"png",
-        "content":"pokemon-radio",
+        "content":"pokemon-others/pokemon-radio",
         "nicename": "Pokémon - Radio"
     },
     "pokemon-expension-card":{
         "type":"png",
-        "content":"pokemon-expension-card",
+        "content":"pokemon-others/pokemon-expension-card",
         "nicename": "Pokémon - Extension"
     },
     "pokemon-red":{
         "type":"png",
-        "content":"pokemon-red",
+        "content":"pokemon-others/pokemon-red",
         "nicename": "Pokémon - Red"
     },
     "pokemon-team-rocket":{
         "type":"png",
-        "content":"pokemon-team-rocket",
+        "content":"pokemon-others/pokemon-team-rocket",
         "nicename": "Pokémon - Team Rocket"
     },
     "pokemon-secret-potion":{
         "type":"png",
-        "content":"pokemon-secret-potion",
+        "content":"pokemon-others/pokemon-secret-potion",
         "nicename": "Pokémon - Secret potion"
     },
     "pokemon-squirt-bottle":{
         "type":"png",
-        "content":"pokemon-squirt-bottle",
+        "content":"pokemon-others/pokemon-squirt-bottle",
         "nicename": "Pokémon - Squirt Bottle"
     },
     "pokemon-coin-case":{
         "type":"png",
-        "content":"pokemon-coin-case",
+        "content":"pokemon-others/pokemon-coin-case",
         "nicename": "Pokémon - Coin case"
     },
     "pokemon-pokegear":{
         "type":"png",
-        "content":"pokemon-pokegear",
+        "content":"pokemon-others/pokemon-pokegear",
         "nicename": "Pokémon - Pokégear"
     },
     "pokemon-machine-part":{
         "type":"png",
-        "content":"pokemon-machine-part",
+        "content":"pokemon-others/pokemon-machine-part",
         "nicename": "Pokémon - Machine part"
     },
 }

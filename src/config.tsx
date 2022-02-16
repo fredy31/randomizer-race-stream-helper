@@ -1,6 +1,6 @@
 import GenericLetters from "./items/genericletters";
 import PokemonBadges from "./items/pokemonbadges";
-import PokemonOthers from "./items/pokemonbadges";
+import PokemonOthers from "./items/pokemonothers";
 
 const Config = {
     "firebaseURL":"https://speedruntracker-default-rtdb.firebaseio.com",
