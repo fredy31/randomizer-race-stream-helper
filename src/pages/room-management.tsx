@@ -212,6 +212,13 @@ const RoomManagement:React.FC<Props> = ({roomcode}) => {
                         <Pills>
                             {Object.keys(Config.items).map(key => {
                                 if(itemSearch && key.includes(itemSearch)){
+                                    let itemName = key;
+                                    // Check if element has nicename, to show instead of prog name in the search.
+                                    const elementKey = key as keyof typeof Config.items;
+                                    const nicenameKey = 'nicename' as keyof typeof Config.items[typeof elementKey];
+                                    if(typeof(Config.items[elementKey][nicenameKey]) !== 'undefined'){
+                                        itemName = Config.items[elementKey][nicenameKey];
+                                    }
                                     return <div key={key} onClick={
                                         () => {
                                             var value = data.items.split(',');
@@ -226,7 +233,7 @@ const RoomManagement:React.FC<Props> = ({roomcode}) => {
                                             var date = new Date();
                                             set(ref(db,String(roomcode).toLowerCase()+'/last-change'),date.toISOString()).catch((e)=>{console.log(e)});
                                         }
-                                    }>{key}</div>
+                                    }>{itemName}</div>
                                 }else{
                                     <React.Fragment />
                                 }
