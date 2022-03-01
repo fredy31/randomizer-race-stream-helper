@@ -40,7 +40,7 @@ const Description = styled.p`
     text-align:center;
     margin:24px 0;
     a{
-        color:#fff;
+        color:currentColor;
     }
 `
 
