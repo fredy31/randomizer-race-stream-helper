@@ -8,8 +8,6 @@ import {getDatabase, ref, onValue, set} from '@firebase/database';
 import Config from './../config';
 
 import PlayerData from '../components/playerdata';
-import e from 'express';
-import { isSet } from 'util/types';
 
 interface Props{
     roomcode:string,
@@ -32,7 +30,7 @@ const RoomPlayer:React.FC<Props> = ({roomcode,player}) => {
                 setSpectateData(JSON.stringify(snapshot.val()));
             })
         }
-    },[roomcode,spectateData]);
+    },[roomcode,spectateData,db]);
     //Update element
     const updateItem = (el:string) => {
         var data = JSON.parse(spectateData);
@@ -70,7 +68,7 @@ const RoomPlayer:React.FC<Props> = ({roomcode,player}) => {
                     //If can upgrade, set with a + 1 upgrade status.
                     value.splice(index,1);
                     const newUpgrade = parseInt(currentUpgrade)+1
-                    console.log(newUpgrade)
+                    //console.log(newUpgrade)
                     value.push(el+'|'+newUpgrade);
                 }else{
                     //If cannot upgrade, remove from the get items.

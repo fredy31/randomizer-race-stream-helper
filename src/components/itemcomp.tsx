@@ -79,8 +79,9 @@ const ItemComp:React.FC<Props> = ({item,got,bgKey,itemZoom}) => {
                 imgSrc = '/images/png/'+itemsArray[item]['active']+'.'+itemsArray[item]["type"]
             }
             //Upgrade Lvl2-3
-            if(itemsArray[item]['up2'] && got === 2){ imgSrc = '/images/png/'+itemsArray[item]['up2']+'.'+itemsArray[item]["type"] }
-            if(itemsArray[item]['up3'] && got === 3){ imgSrc = '/images/png/'+itemsArray[item]['up3']+'.'+itemsArray[item]["type"] }
+            //console.log(got);
+            if(itemsArray[item]['up'+got]){ imgSrc = '/images/png/'+itemsArray[item]['up'+got]+'.'+itemsArray[item]["type"] }
+            //if(itemsArray[item]['up3'] && got === 3){ imgSrc = '/images/png/'+itemsArray[item]['up3']+'.'+itemsArray[item]["type"] }
             //Render
             return <ItemStyle color={bgKey} itemZoom={itemZoom} gotStyle={got}>
                 <img src={imgSrc} alt={alt} />

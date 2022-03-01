@@ -66,6 +66,9 @@ const PlayerData:React.FC <Props> = ({fullList,playerName,playerData,bgKey,updat
                         }else if(itemGotList.indexOf(el+'|3') !== -1){
                             //Messy way to check for upgrades
                             itemStatus = 3;
+                        }else if(itemGotList.indexOf(el+'|4') !== -1){
+                            //Messy way to check for upgrades
+                            itemStatus = 4;
                         }
                         return <div key={playerName + '-' + el}  onClick={updateItem 
                                 ? ()=>{updateItem(el)} 

@@ -1,7 +1,7 @@
 import GenericLetters from "./items/generic-letters";
 import PokemonBadges from "./items/pokemon-badges";
 import PokemonOthers from "./items/pokemon-others";
-import ZeldaLTTP from "./items/zelda-lttp";
+import {ZeldaLTTP, LLTPSets} from "./items/zelda-lttp";
 
 const Config = {
     "firebaseURL":"https://speedruntracker-default-rtdb.firebaseio.com",
@@ -45,7 +45,8 @@ const Config = {
         "pokemon-sword-badges":",pokemon-badge-grass,pokemon-badge-water,pokemon-badge-fire,pokemon-badge-fighting,pokemon-badge-fairy-galar,pokemon-badge-rock,pokemon-badge-dark,pokemon-badge-dragon",
         "pokemon-shield-badges":",pokemon-badge-grass,pokemon-badge-water,pokemon-badge-fire,pokemon-badge-ghost,pokemon-badge-fairy-galar,pokemon-badge-ice,pokemon-badge-dark,pokemon-badge-dragon",
         "pokemon-masters-badges":",pokemon-badge-tranquility,pokemon-badge-freedom,pokemon-badge-patience,pokemon-badge-glacier-masters,pokemon-badge-pride",
-        "pokemon-crystal-randomizer":"pokemon-pokegear,pokemon-radio,pokemon-expension-card,pokemon-squirt-bottle,pokemon-secret-potion,pokemon-card-key,|,,pokemon-machine-part,pokemon-basement-key,pokemon-lost-item,pokemon-bicycle,pokemon-ss-ticket,pokemon-pass,|,,1,2,3,4,5,6,7,8,|,,pokemon-badge-boulder,pokemon-badge-cascade,pokemon-badge-thunder,pokemon-badge-rainbow,|,,pokemon-badge-soul,pokemon-badge-marsh,pokemon-badge-volcano,pokemon-badge-earth,|,,pokemon-badge-zephyr,pokemon-badge-hive,pokemon-badge-plain,pokemon-badge-fog,|,,pokemon-badge-storm,pokemon-badge-mineral,pokemon-badge-glacier,pokemon-badge-rising,|,,pokemon-team-rocket,pokemon-red,trophy,go,"
+        "pokemon-crystal-randomizer":"pokemon-pokegear,pokemon-radio,pokemon-expension-card,pokemon-squirt-bottle,pokemon-secret-potion,pokemon-card-key,|,,pokemon-machine-part,pokemon-basement-key,pokemon-lost-item,pokemon-bicycle,pokemon-ss-ticket,pokemon-pass,|,,1,2,3,4,5,6,7,8,|,,pokemon-badge-boulder,pokemon-badge-cascade,pokemon-badge-thunder,pokemon-badge-rainbow,|,,pokemon-badge-soul,pokemon-badge-marsh,pokemon-badge-volcano,pokemon-badge-earth,|,,pokemon-badge-zephyr,pokemon-badge-hive,pokemon-badge-plain,pokemon-badge-fog,|,,pokemon-badge-storm,pokemon-badge-mineral,pokemon-badge-glacier,pokemon-badge-rising,|,,pokemon-team-rocket,pokemon-red,trophy,go,",
+        ...LLTPSets
     }
 }
 export default Config;
