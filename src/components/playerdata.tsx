@@ -53,7 +53,7 @@ const PlayerData:React.FC <Props> = ({fullList,playerName,playerData,bgKey,updat
                     i++;
                     //el.replace('\n','').replace(/(\r\n|\n|\r)/gm, "");;
                     if(!el){
-                        return <React.Fragment />
+                        return <React.Fragment key={'fragment-'+i} />
                     }else if(el === '|'){
                         return <ItemNewLine key={'nl-'+i}></ItemNewLine>
                     }else{
@@ -72,7 +72,7 @@ const PlayerData:React.FC <Props> = ({fullList,playerName,playerData,bgKey,updat
                                 : ()=>{return false}
                             }>
                             <ItemComp 
-                                item={el} got={itemStatus}
+                                key={playerName + '-item-' + el} item={el} got={itemStatus}
                             />
                         </div>
                     }
